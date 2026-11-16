@@ -1,0 +1,14 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    # platform: linux/amd64   # 🍎 Mac: descomente se houver erro de arquitetura (Intel: linux/amd64 | Apple Silicon: linux/arm64)
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # API REST + dashboard
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  qdrant_data:
